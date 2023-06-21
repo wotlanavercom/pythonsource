@@ -48,3 +48,43 @@ def even2(n):
     return n % 2 == 0
 print(list(filter(even2, list1)))   # [2, 6, 8, 10, 12]
 print(list(filter(lambda n: n % 2 == 0, list1)))
+
+# lambda + map
+def mul(x):
+    return x**2
+
+nums = [1, 2, 3, 6, 8, 10, 11, 12, 13, 14, 15]
+
+# map(함수, 리스트)
+print(list(map(mul, nums)))     #[1, 4, 9, 36, 64, 100, 121, 144, 169, 196, 225]
+
+print(list(map(lambda x: x**2, nums)))
+
+nums = list(range(1, 11))
+
+# 3의 배수만 문자열로 변경한 리스트 반환 ==> str()
+# [1, 2, '3', 4, 5, '6', 7, 8, '9', 10]
+nums_result = []
+
+def str_check(nums):
+    '''
+    리스트 안의 요소가 3의 배수인 경우 문자로 변환
+    '''
+    for i in nums:
+        if i % 3 == 0:
+            nums_result.append(str(i))
+        else:
+            nums_result.append(i)
+
+    return nums_result
+print(str_check(nums))  #[1, 2, '3', 4, 5, '6', 7, 8, '9', 10]
+
+# filter, map
+def str_check2(i):
+    if i % 3 == 0:
+        return str(i)
+    else:
+        return i
+print(list(map(str_check2, nums)))  #[1, 2, '3', 4, 5, '6', 7, 8, '9', 10]
+
+print(list(map(lambda i: str(i) if i % 3 == 0 else i, nums)))
